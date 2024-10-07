@@ -1,0 +1,28 @@
+{
+  "name": "book-app-native",
+  "version": "1.0.0",
+  "description": "app with native methods js",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "start": "live-server",
+    "build": "rollup -c --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Parallite/books-app.git"
+  },
+  "author": "Parallite",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "on-change": "^5.0.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.12.0",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "eslint": "^8.57.1",
+    "globals": "^15.10.0",
+    "rollup-plugin-import-css": "^3.5.4"
+  }
+}
