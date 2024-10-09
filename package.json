@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "live-server",
-    "build": "rollup -c --watch"
+    "build": "rollup -c --watch",
+    "lint": "npx eslint ./src/* --fix"
   },
   "repository": {
     "type": "git",

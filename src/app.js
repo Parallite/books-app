@@ -2,7 +2,7 @@ import { MainView } from "./views/main/main";
 
 class App {
     routes = [
-        { path: '', view: MainView }
+        { path: "", view: MainView }
     ];
 
     appState = {
@@ -10,7 +10,7 @@ class App {
     };
 
     constructor() {
-        window.addEventListener('hashchange', this.route.bind(this));
+        window.addEventListener("hashchange", this.route.bind(this));
         this.route()
     }
 

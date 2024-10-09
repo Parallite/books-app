@@ -4,9 +4,8 @@ import css from "rollup-plugin-import-css";
 export default {
     input: 'src/app.js',
     output: {
-        // file: 'bundle.js',
-        dir: 'dist',
-        format: 'esm'
+        file: "dist/bundle.js",
+        format: "esm"
     },
-    plugins: [nodeResolve(), css()]
+    plugins: [nodeResolve(), css({ output: 'bundle.css' })]
 };
