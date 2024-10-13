@@ -1,0 +1,84 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden; 
+}
+
+.card__content {
+    background: #B8B8B8;
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.card__image {
+    min-height: 140px;
+    padding: 20px 0;
+}
+
+.card__info {
+    width: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    background: var(--black);
+    color: var(--white);
+    min-height: 50%;
+    padding: 20px 20px;
+}
+
+.card__tag {
+    font-weight: 300;
+    font-size: 11px;
+    line-height: 15px;
+    margin-bottom: 10px;
+}
+
+.card__name {
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 110%;
+    margin-bottom: 10px;
+}
+
+.card__description {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 15px;
+    overflow: scroll;
+    max-height: 100px;
+    overflow: scroll;
+    margin-bottom: 15px;
+}
+
+
+.card__author {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 15px;
+}
+
+.card__footer {
+    margin-top: auto;
+    display: flex;
+}
+
+.button__add {
+    width: 36px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: 1px solid var(--white);
+    cursor: pointer;
+}
+
+
+.button__active {
+    background: var(--white);
+}
