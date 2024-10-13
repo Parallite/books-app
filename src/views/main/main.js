@@ -5,6 +5,9 @@ import { Search } from "../../components/search/search";
 import { CardList } from "../../components/cardList/cardList";
 // import { Spinner } from "../../components/spinner/spinner";
 
+const apiKey = process.env.GOOGLE_API_KEY;
+const apiUrl = process.env.GOOGLE_BOOKS_API_URL;
+
 export class MainView extends AbstractView {
     state = {
         list: [],
@@ -17,11 +20,14 @@ export class MainView extends AbstractView {
     constructor(appState) {
         super();
         this.appState = appState;
-        // Отслеживает изменение State app
         this.appState = onChange(this.appState, this.appStateHook.bind(this));
-        // Отслеживает изменение state main
         this.state = onChange(this.state, this.stateHook.bind(this));
         this.setTitle("Поиск книг");
+    }
+
+    destroy() {
+        onChange.unsubscribe(this.appState);
+        onChange.unsubscribe(this.state);
     }
 
     appStateHook(path) {
@@ -41,7 +47,6 @@ export class MainView extends AbstractView {
                 } else {
                     [this.state.list, this.state.amount] = [[], 0];
                 }
-                console.log(this.state.list);
             }
             if (path === "loading") {
                 this.render();
@@ -57,13 +62,18 @@ export class MainView extends AbstractView {
 
     async loadList(q, offset) {
         if (q) {
-            const res = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${q}&key=key&startIndex=${offset}`);
+            const res = await fetch(`${apiUrl}?q=${q}&key=${apiKey}&startIndex=${offset}`);
             return res.json();
         }
     }
 
     render() {
         const main = document.createElement("div");
+        main.innerHTML = `
+        <h1 class="">
+            Найдено книг - ${this.state.amount ? this.state.amount : 0}
+        </h1>
+`;
         main.append(new Search(this.state).render());
         main.append(new CardList(this.appState, this.state).render());
         this.app.innerHTML = "";

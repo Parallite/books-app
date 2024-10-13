@@ -1,13 +1,13 @@
-.card-list {
+/* .card-list {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
-}
+} */
 
-.card-list__find-info {
+/* .card-list__find-info {
     align-self: flex-start;
-}
+} */
 
 /* .card-list__paginations {
     display: flex;
@@ -22,3 +22,9 @@
     gap: 5px;
     cursor: pointer;
 } */
+
+.card__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
