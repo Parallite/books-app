@@ -25,14 +25,3 @@ export class CardList extends DivComponent {
         return this.el
     }
 }
-
-{/* <div class="card-list__paginations">
-<div class="card-list__pagination">
-    <img src='/static/arrow-back.svg' alt='Иконка предыдущей страницы' />
-    Предыдущая страница
-</div>
-<div class="card-list__pagination">
-    Следующая страница
-    <img src='/static/arrow-forward.svg' alt='Иконка следующей страницы' />
-</div>
-</div> */}
