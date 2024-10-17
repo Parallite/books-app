@@ -35,14 +35,13 @@ export class BookView extends AbstractView {
     }
 
     async stateHook(path) {
-        console.log(path);
         try {
             if (path === "isFirstMount") {
                 this.state.loading = true;
                 const data = await this.loadBook(this.bookId);
                 this.state.loading = false;
                 if (data) {
-                    this.state.book = data.volumeInfo;
+                    this.state.book = data;
                 }
             }
             if (path === "loading") {
@@ -76,7 +75,7 @@ export class BookView extends AbstractView {
         this.app.innerHTML = "";
         const main = document.createElement("div");
         this.app.append(main);
-        main.append(new BookDetails(this.state.book).render());
+        main.append(new BookDetails(this.state, this.appState).render());
         this.renderHeader();
         this.renderFooter();
     }

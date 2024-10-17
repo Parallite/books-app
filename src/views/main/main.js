@@ -5,7 +5,6 @@ import onChange from "on-change";
 import { Search } from "../../components/search/search";
 import { CardList } from "../../components/cardList/cardList";
 import { Paginations } from "../../components/paginations/paginations";
-// import { Spinner } from "../../components/spinner/spinner";
 
 const apiKey = process.env.GOOGLE_API_KEY;
 const apiUrl = process.env.GOOGLE_BOOKS_API_URL;

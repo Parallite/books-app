@@ -24,8 +24,7 @@ export class Paginations extends DivComponent {
             return this.el
         }
 
-        this.el.classList.add("container");
-        this.el.classList.add("paginations");
+        this.el.classList.add("container", "paginations");
         this.el.innerHTML = `
             <button class="paginations__item paginations__item_prev">
                 <img src='/static/arrow-back.svg' alt='Иконка показать больше' />
