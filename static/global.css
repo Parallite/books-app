@@ -1,14 +1,28 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: "Rubik", sans-serif;
+    background-color: var(--white);
     color: var(--black);
 }
 
 :root {
-    --black: #121212;
-    --white: #fafafa;
+    --black: #3D3D3D;
+    --white: #F6F6F6;
+    --grey: #C3BBB7;
+    --light-blue: #A9C9DC;
+    --dark-blue: #6EA4C2;
+    --yellow: #FED301;
+    --light-brown: #A66F02;
+    --dark-brown: #74460F;
+
 }
 
-#root {
+.container {
     max-width: 1400px;
     margin: 0 auto;
 }

@@ -28,7 +28,7 @@ export class FavoritesView extends AbstractView {
         const favorites = document.createElement("div");
         favorites.innerHTML = `
         <h1>
-            Избранное - ${this.appState.favorites.length ? this.appState.favorites.length : 0}
+            Favorites: ${this.appState.favorites.length ? this.appState.favorites.length : 0}
         </h1>
 `;
         favorites.append(new CardList(this.appState, { list: this.appState.favorites }).render());

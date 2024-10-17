@@ -2,32 +2,31 @@
     display: flex;
     flex-direction: column;
     border-radius: 8px;
-    overflow: hidden; 
 }
 
-.card__content {
-    background: #B8B8B8;
+.card__image-wrapper {
     display: flex;
-    flex-direction: column;
-    padding-top: 10px;
-    justify-content: space-between;
     align-items: center;
-    height: 100%;
+    justify-content: center;
+    height: 250px;
+    overflow: hidden;
+    margin: 10px 10px;
 }
 
 .card__image {
-    min-height: 140px;
-    padding: 20px 0;
+    max-height: 450px;
+    padding: 20px 0 20px 0;
+    object-fit: contain;
 }
 
 .card__info {
-    width: calc(100% - 40px);
     display: flex;
     flex-direction: column;
     background: var(--black);
     color: var(--white);
     min-height: 50%;
     padding: 20px 20px;
+    border-radius: 0 0 12px 12px;
 }
 
 .card__tag {
@@ -45,20 +44,27 @@
 }
 
 .card__description {
-    font-weight: 400;
+    font-weight: 600;
     font-size: 11px;
     line-height: 15px;
-    overflow: scroll;
-    max-height: 100px;
-    overflow: scroll;
-    margin-bottom: 15px;
 }
+
+.card__description span {
+    margin-left: 8px;
+    color: var(--yellow);
+
+}
+
+.card__description a {
+    text-decoration: underline var(--yellow);
+} 
 
 
 .card__author {
     font-weight: 400;
     font-size: 11px;
     line-height: 15px;
+    margin-bottom: 10px;
 }
 
 .card__footer {
@@ -78,7 +84,16 @@
     cursor: pointer;
 }
 
+.button__add img {
+    width: 25px;
+    height: 25px;
+}
+
 
 .button__active {
-    background: var(--white);
+    background: var(--yellow);
 }
+
+.button__inactive {
+    background: var(--white);
+} 

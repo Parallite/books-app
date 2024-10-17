@@ -20,31 +20,33 @@ export class Card extends DivComponent {
         this.el.classList.add("card");
         const existFavorites = this.appState.favorites.find(item => item.id === this.cardState.id);
         this.el.innerHTML = `
-                <div class="card__content">
-                    <img class="card__image" src=${this.cardState.volumeInfo.imageLinks.thumbnail} alt='Обложка книги' />
+                    <div class="card__image-wrapper">
+                        <img class="card__image" src=${this.cardState.volumeInfo?.imageLinks?.thumbnail ? this.cardState.volumeInfo.imageLinks.thumbnail : "static/empty-book.png"} alt='Обложка книги' />
+                    </div>
                     <div class="card__info">
                         <div class="card__tag">
                             Category: ${this.cardState.volumeInfo.categories ? this.cardState.volumeInfo.categories : "Не задано"}
+                        </div>
+                        <div class="card__author">
+                            Author: ${this.cardState.volumeInfo.authors ? this.cardState.volumeInfo.authors : "Не задано"}
                         </div>
                         <div class="card__name">
                             Name: ${this.cardState.volumeInfo.title}
                         </div>
                         <div class="card__description">
-                            Description: ${this.cardState.volumeInfo.description ? this.cardState.volumeInfo.description : "Не задано"}
-                        </div>
-                        <div class="card__author">
-                            Author: ${this.cardState.volumeInfo.authors ? this.cardState.volumeInfo.authors : "Не задано"}
+                            Description: 
+                            <a href="#book?id=${this.cardState.id}">
+                                <span>
+                                    see more 
+                                </span>
+                            </a>
                         </div>
                         <div class="card__footer">
                             <button class="button__add ${existFavorites ? "button__active" : "button__inactive"}" id=${this.cardState.id}>
-                                ${existFavorites
-                ? "<img src=static/favorites.svg alt=Иконка добавления в избранное />"
-                : "<img src=static/favorites-white.svg alt=Иконка добавления в избранное />"
-            }   
+                                <img src=static/favorites.svg alt=Иконка добавления в избранное />
                             </button>
                         </div>
                     </div>
-                </div>
     `;
         if (existFavorites) {
             this.el

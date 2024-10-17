@@ -20,15 +20,20 @@ export class Paginations extends DivComponent {
     }
 
     render() {
+        if (this.parentState.list.length === 0) {
+            return this.el
+        }
+
+        this.el.classList.add("container");
         this.el.classList.add("paginations");
         this.el.innerHTML = `
             <button class="paginations__item paginations__item_prev">
                 <img src='/static/arrow-back.svg' alt='Иконка показать больше' />
-                Предыдущая страница
+                <div>Previous page</div>
             </button>
-            <div>${this.parentState.offset}</div>
+            <div class="paginations__offset">${this.parentState.offset}</div>
             <button class="paginations__item paginations__item_next">
-                Следующая страница
+                <div>Next page</div>
                 <img src='/static/arrow-forward.svg' alt='Иконка следующей страницы' />
             </button>
         `;

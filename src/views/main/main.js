@@ -1,5 +1,6 @@
 import { AbstractView } from "../../common/view";
 import { Header } from "../../components/header/header";
+import { Footer } from "../../components/footer/footer";
 import onChange from "on-change";
 import { Search } from "../../components/search/search";
 import { CardList } from "../../components/cardList/cardList";
@@ -17,7 +18,7 @@ export class MainView extends AbstractView {
         searchQuery: undefined,
         show: {
             startIndex: 0,
-            maxResults: 10,
+            maxResults: 12,
         },
         offset: 1
     };
@@ -66,10 +67,10 @@ export class MainView extends AbstractView {
                 this.state.list = data.items;
                 this.render();
             }
-
         } catch (error) {
             this.state.loading = false
             console.log(`Message: ${error.message}, status: ${error.code}`);
+            this.render();
         }
     }
 
@@ -82,21 +83,22 @@ export class MainView extends AbstractView {
 
     render() {
         const main = document.createElement("div");
-        main.innerHTML = `
-        <h1 class="">
-            Найдено книг - ${this.state.totalFound ? this.state.totalFound : 0}
-        </h1>
-`;
         main.append(new Search(this.state).render());
         main.append(new CardList(this.appState, this.state).render());
         main.append(new Paginations(this.state).render());
         this.app.innerHTML = "";
         this.app.append(main);
         this.renderHeader();
+        this.renderFooter();
     }
 
     renderHeader() {
         const header = new Header(this.appState).render();
         this.app.prepend(header);
+    }
+
+    renderFooter() {
+        const footer = new Footer().render();
+        this.app.append(footer);
     }
 }

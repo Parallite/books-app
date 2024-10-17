@@ -1,5 +1,19 @@
-.card__grid {
+.wrapper {
+    min-height: 100vh;
+    text-align: center;
+    padding: 50px 0;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 15px;
+}
+
+.cards__total {
+    padding: 30px 0 30px 15px;
+}
+
+.card__list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    column-gap: 30px;
+    row-gap: 45px;
 }
