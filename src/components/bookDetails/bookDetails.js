@@ -31,7 +31,9 @@ export class BookDetails extends DivComponent {
         this.el.innerHTML = `
             <h1 class="details__title">${this.parentState.book?.volumeInfo.title}</h1>
             <div class="details__content">
-                <img class="details__content_img" src=${this.parentState.book?.volumeInfo.imageLinks?.large ? this.parentState.book?.volumeInfo.imageLinks?.large : "static/empty-book.png"} alt='Обложка книги' />
+                <img class="details__content_img" src=${this.parentState.book?.volumeInfo.imageLinks?.thumbnail
+                ? this.parentState.book?.volumeInfo.imageLinks.thumbnail
+                : "static/empty-book.png"} alt='Обложка книги' />
                 <div class="details__content_info">
                     <h2>Author: <span>${this.parentState.book?.volumeInfo.authors ? this.parentState.book?.volumeInfo.authors : "Information not found"}</span></h2>
                     <h2>Category: <span>${this.parentState.book?.volumeInfo.categories ? this.parentState.book?.volumeInfo.categories : "Information not found"}</span></h2>
