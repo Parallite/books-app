@@ -1,9 +1,10 @@
 import { AbstractView } from "../../common/view";
 import { Header } from "../../components/header/header";
+import { Footer } from "../../components/footer/footer";
 import onChange from "on-change";
 import { Search } from "../../components/search/search";
 import { CardList } from "../../components/cardList/cardList";
-// import { Spinner } from "../../components/spinner/spinner";
+import { Paginations } from "../../components/paginations/paginations";
 
 const apiKey = process.env.GOOGLE_API_KEY;
 const apiUrl = process.env.GOOGLE_BOOKS_API_URL;
@@ -11,10 +12,14 @@ const apiUrl = process.env.GOOGLE_BOOKS_API_URL;
 export class MainView extends AbstractView {
     state = {
         list: [],
-        amount: 0,
+        totalFound: 0,
         loading: false,
         searchQuery: undefined,
-        offset: 0
+        show: {
+            startIndex: 0,
+            maxResults: 12,
+        },
+        offset: 1
     };
 
     constructor(appState) {
@@ -40,49 +45,59 @@ export class MainView extends AbstractView {
         try {
             if (path === "searchQuery") {
                 this.state.loading = true;
-                const data = await this.loadList(this.state.searchQuery, this.state.offset);
+                const data = await this.loadList(this.state.searchQuery, this.state.show.startIndex, this.state.show.maxResults);
                 this.state.loading = false;
                 if (data) {
-                    [this.state.list, this.state.amount] = [data.items, data.totalItems];
+                    [this.state.list, this.state.totalFound] = [data.items, data.totalItems];
                 } else {
-                    [this.state.list, this.state.amount] = [[], 0];
+                    [this.state.list, this.state.totalFound] = [[], 0];
                 }
             }
             if (path === "loading") {
                 this.render();
             }
-            if (path === "amount" || path === "list") {
+            if (path === "totalFound" || path === "list") {
+                this.render();
+            }
+            if (path === "show.startIndex") {
+                this.state.loading = true;
+                const data = await this.loadList(this.state.searchQuery, this.state.show.startIndex, this.state.show.maxResults);
+                this.state.loading = false;
+                this.state.list = data.items;
                 this.render();
             }
         } catch (error) {
             this.state.loading = false
             console.log(`Message: ${error.message}, status: ${error.code}`);
+            this.render();
         }
     }
 
-    async loadList(q, offset) {
+    async loadList(q, startIndex, maxIndex) {
         if (q) {
-            const res = await fetch(`${apiUrl}?q=${q}&key=${apiKey}&startIndex=${offset}`);
+            const res = await fetch(`${apiUrl}?q=${q}&key=${apiKey}&startIndex=${startIndex}&maxResults=${maxIndex}`);
             return res.json();
         }
     }
 
     render() {
         const main = document.createElement("div");
-        main.innerHTML = `
-        <h1 class="">
-            Найдено книг - ${this.state.amount ? this.state.amount : 0}
-        </h1>
-`;
         main.append(new Search(this.state).render());
         main.append(new CardList(this.appState, this.state).render());
+        main.append(new Paginations(this.state).render());
         this.app.innerHTML = "";
         this.app.append(main);
         this.renderHeader();
+        this.renderFooter();
     }
 
     renderHeader() {
         const header = new Header(this.appState).render();
         this.app.prepend(header);
+    }
+
+    renderFooter() {
+        const footer = new Footer().render();
+        this.app.append(footer);
     }
 }
